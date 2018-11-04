@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.container
+        h2 Donation Successful! Would you like to refer our organization to 2 other people?
+        form(method='post', action='/api/donate')
+            label(for="referral1_first_name") Referral's First Name
+            input(type='text' name='referral1_first_name' id='referral1_first_name')
+            label(for="referral1_email") Referral's Email
+            input(type='email' name='referral1_email' id='referral1_email')
+
+            label(for="referral2_first_name") Referral's First Name
+            input(type='text' name='referral2_first_name' id='referral2_first_name')
+            label(for="referral2_email") Referral's Email
+            input(type='email' name='referral2_email' id='referral2_email')
+
+            input(type='hidden' name='step' value='3')
+            button Skip
+            button Refer and go to final step

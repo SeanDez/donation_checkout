@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    .container
+        h2 Payment details
+        form(method='post', action='/api/donate')
+            label(for="first_name") First Name
+            input(type='text' name='first_name' id='first_name')
+            label(for="last_name") Last Name
+            input(type='text' name='last_name' id='last_name')
+            label(for="email") Email Address
+            input(type='email' name='email' id='email')
+            label(for="card_number") Credit Card Number
+            input(type='text' name='card_number' id='card_number')
+            label(for="card_expiration") Credit Card Expiration Date
+            input(type='text' name='card_expiration' id='card_expiration')
+            label(for="card_cvv") Credit Card CVV Number
+            input(type='text' name='card_cvv' id='card_cvv')
+            input(type='hidden' name='step' value='2')
+            button Next Step
