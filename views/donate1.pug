@@ -4,10 +4,22 @@ block content
     div.container
         h2 How much would you like to donate?
         form(method='post', action='/api/donate')
-            input(type='radio' name='donation_amount' value='$10')
-            input(type='radio' name='donation_amount' value='$25')
-            input(type='radio' name='donation_amount' value='$50')
-            label(for="custom_donation_amount") Custom Amount
-            input(type='text' name='donation_amount' id='custom_donation_amount' placeholder='Enter custom amount here')
+            p
+                label(for='$10') $10
+                input(type='radio' name='donation_amount' value='$10' id='$10')
+
+            p
+                label(for="$25") $25
+                input(type='radio' name='donation_amount' value='$25' id='$25')
+
+            p
+                label(for='$50') $50
+                input(type='radio' name='donation_amount' value='$50' id='$50')
+
+            p
+                label(for="custom_amount") Custom Amount
+                input(type='text' name='donation_amount' id='custom_amount' placeholder='Enter custom amount here')
             input(type='hidden' name='step' value='1')
-            button Next Step
+
+            p
+                button Next Step

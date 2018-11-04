@@ -9,3 +9,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container {
+  /*width: 90vw;*/
+  text-align: center;
+}

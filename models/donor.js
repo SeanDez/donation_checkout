@@ -23,3 +23,7 @@ const DonorSchema = new mongoose.Schema({
         maxLength: 6
     }
 });
+
+const DonorModel = mongoose.model("donation_checkout_donor", DonorSchema);
+module.exports = DonorModel;
+
