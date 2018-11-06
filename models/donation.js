@@ -9,7 +9,7 @@ const DonationSchema = new mongoose.Schema({
         type     : Number,
         required : true
     }
-};
+});
 
 const DonationModel = mongoose.model("donation_checkout_donation", DonationSchema);
 module.exports = DonationModel;
