@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2ded52b-096f-47fc-8158-3257d077807e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/donation.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/donation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/donor.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/donor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/donate1.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/donate1.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/donate2.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/donate2.pug" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +24,7 @@
         <counts>
           <entry key="css" value="2" />
           <entry key="env" value="1" />
-          <entry key="js" value="5" />
+          <entry key="js" value="10" />
           <entry key="pug" value="14" />
         </counts>
       </usages-collector>
@@ -38,14 +33,14 @@
           <entry key=".env file" value="1" />
           <entry key="CSS" value="2" />
           <entry key="Jade" value="14" />
-          <entry key="JavaScript" value="5" />
+          <entry key="JavaScript" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="59" />
           <entry key="env" value="47" />
-          <entry key="js" value="1920" />
+          <entry key="js" value="2755" />
           <entry key="pug" value="1547" />
         </counts>
       </usages-collector>
@@ -54,7 +49,7 @@
           <entry key=".env file" value="47" />
           <entry key="CSS" value="59" />
           <entry key="Jade" value="1547" />
-          <entry key="JavaScript" value="1920" />
+          <entry key="JavaScript" value="2755" />
         </counts>
       </usages-collector>
     </session>
@@ -64,44 +59,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="33" column="128" lean-forward="true" selection-start-line="33" selection-start-column="128" selection-end-line="33" selection-end-column="128" />
+            <state relative-caret-position="714">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.pug">
+        <entry file="file://$PROJECT_DIR$/models/donor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="22" selection-start-line="3" selection-end-line="3" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/donate1.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/donate2.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+            <state relative-caret-position="221">
+              <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -125,7 +93,6 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/donate4.pug" />
         <option value="$PROJECT_DIR$/views/donate3.pug" />
-        <option value="$PROJECT_DIR$/models/donor.js" />
         <option value="$PROJECT_DIR$/models/email.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/views/index.pug" />
@@ -133,6 +100,7 @@
         <option value="$PROJECT_DIR$/views/donate1.pug" />
         <option value="$PROJECT_DIR$/views/donate2.pug" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/models/donor.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
@@ -245,12 +213,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541268659894</updated>
       <workItem from="1541268661229" duration="6129000" />
-      <workItem from="1541350526871" duration="24711000" />
+      <workItem from="1541350526871" duration="34023000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30840000" />
+    <option name="totallyTimeSpent" value="40152000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="705" y="39" width="891" height="810" extended-state="0" />
@@ -285,22 +253,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.pug">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/donor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -327,13 +281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/donation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -365,10 +312,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/donation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/email.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/donor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="33" column="128" lean-forward="true" selection-start-line="33" selection-start-column="128" selection-end-line="33" selection-end-column="128" />
+        <state relative-caret-position="714">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>

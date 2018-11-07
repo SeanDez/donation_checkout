@@ -14,7 +14,7 @@ const DonorSchema = new mongoose.Schema({
         type : String,
         maxLength: 40
     },
-    card_number : {
+    card_number : { // hash and salt cc info. Or don't add it
         type : String,
         length : 16,
     },

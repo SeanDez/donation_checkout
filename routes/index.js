@@ -6,6 +6,9 @@ const Donor = require('../models/donor');
 const Donation = require('../models/donation');
 const Email = require("../models/email");
 
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URI);
+
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
 
@@ -38,21 +41,54 @@ router.post('/api/donate', (req, res, next) => {
       res.render('donate2', { amount : parsed_amount });
 
   } else if (req.body.step === '2') {
-      console.log("step 2 end");
       // grab all the data
+
+
       // ship it to Stripe
 
-      const stripe_charge = stripe.charges.create({
-          amount        : parsed_amount,
+      stripe.charges.create({
+          amount        : 2000,
           currency      : "usd",
           source        : "tok_visa",
           receipt_email : req.body.email,
-      }).then((charge) => console.log(charge))
+      }).then((charge) => {
+          console.log(charge);
+
+          // create a new document for the donor, donation, email
+          const new_donor = new Donor({
+              first_name : req.body.first_name,
+              last_name : req.body.last_name,
+              email : req.body.email,
+
+          });
+          new_donor.save((error, document) => {
+              if (error) {
+                  console.log(error);
+              } else {
+                  const new_donation = new Donation({
+                        donor_id : document._id,
+                        donation_amount : parsed_amount
+                  });
+
+                  new_donation.save((error, document) => {
+                     if (error) { console.log(error) }
+                  });
+
+                  const new_email = new Email({
+                      donor_id : document._id,
+                      is_referred : false,
+                      first_name : req.body.first_name,
+                      email : req.body.email
+                  });
+                  new_email.save(error => {
+                      if (error) { console.log('error'); }
+                  })
+              }
+          });
+
+          }
+      )
         .catch(e => console.log(e));
-
-
-      // upon hearing a response, save everything to the 3 collections via the models
-
 
 
 
