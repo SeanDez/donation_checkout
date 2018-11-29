@@ -14,11 +14,17 @@ const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  // res.render('index', { title: 'Express' });
 });
 
 router.get('/donate1', (req, res, next) => {
   res.render('donate1');
+});
+
+router.post('/test', (req, res, next) => {
+  
+  res.json({req : req.body})
+  // res.send("Hello res.send on /test")
 });
 
 router.post('/api/donate', (req, res, next) => {
@@ -47,7 +53,7 @@ router.post('/api/donate', (req, res, next) => {
       // ship it to Stripe
 
       stripe.charges.create({
-          amount        : 2000,
+          amount        : req.body.donation_amount,
           currency      : "usd",
           source        : "tok_visa",
           receipt_email : req.body.email,
@@ -59,6 +65,7 @@ router.post('/api/donate', (req, res, next) => {
               first_name : req.body.first_name,
               last_name : req.body.last_name,
               email : req.body.email,
+              // statement_descriptor : 'CharityCo Donation'
 
           });
           new_donor.save((error, document) => {
@@ -94,10 +101,12 @@ router.post('/api/donate', (req, res, next) => {
 
         res.render('donate3');
   }  else if (req.body.step === '3') {
-      // steps
+      // console.log("received a post request, flowed to step 3");
+      // create an instance of the email model
+      // load it with
 
-      res.clearCookie();
-      res.render('donate4');
+      // res.clearCookie();
+      res.json({ message : "here's a response back"});
   }
 });
 
