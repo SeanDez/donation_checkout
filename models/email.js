@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 // for donors and referees
 const EmailSchema = new mongoose.Schema({
-    donor_id : {
+    donorId : {
         type : String,
     },
-    is_referred : {
+    isReferred : {
         type : Boolean,
         default: false
     },
-    first_name : {
+    firstName : {
         type : String,
         maxLength : 20
     },

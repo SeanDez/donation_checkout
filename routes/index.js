@@ -35,11 +35,6 @@ router.post('/api/donate', (req, res, next) => {
 
   if (req.body.step === '1') {
       console.log("step 1 end");
-      // steps
-      // res.cookie('amount', req.body.donation_amount, {
-      //   // maxAge : 3600000,
-      //   httpOnly : true
-      // });
 
       for (i = 0; i < req.body.donation_amount.length; i ++) {
           console.log(i, parseInt(req.body.donation_amount[i]));
@@ -50,75 +45,112 @@ router.post('/api/donate', (req, res, next) => {
       res.render('donate2', { amount : parsed_amount });
 
   } else if (req.body.step === '2' || req.body.checkoutStep === 'paymentDetails') {
-      // grab all the data
-    console.log('backend req.body', req.body);
-    console.log('req.body.resultToken', req.body.resultToken);
-    console.log('backend req.body.donationAmount', req.body.donationAmount);
 
       // create a Stripe charge
     stripe.charges.create({
-      amount        : req.body.donationAmount,
+      amount        : req.body.donationAmount, // convert toInt, * 100
       currency      : "usd",
       source        : req.body.resultToken.id,
       receipt_email : req.body.emailAddress,
       description   : "test charge " + new Date(),
       metadata      : {emailAddress : req.body.emailAddress},
-    })
-          // .then((charge) => {
-          //   console.log("charge: ", charge);
-          // });
-      //
-      //     // create a new document for the donor, donation, email
-      //     const new_donor = new Donor({
-      //       first_name : req.body.firstName,
-      //       last_name  : req.body.lastName,
-      //       email      : req.body.emailAddress,
-      //       // statement_descriptor : 'CharityCo Donation'
-      //
-      //     });
-      //     new_donor.save((error, document) => {
-      //       if (error) {
-      //         console.log(error);
-      //       } else {
-      //         const new_donation = new Donation({
-      //           donor_id        : document._id,
-      //           donation_amount : parsed_amount,
-      //         });
-      //
-      //         new_donation.save((error, document) => {
-      //           if (error) {
-      //             console.log(error);
-      //           }
-      //         });
-      //
-      //         const new_email = new Email({
-      //           donor_id    : document._id,
-      //           is_referred : false,
-      //           first_name  : req.body.firstName,
-      //           email       : req.body.emailAddress,
-      //         });
-      //         new_email.save(error => {
-      //           if (error) {
-      //             console.log("error");
-      //           }
-      //         });
-      //       }
-      //     });
-      //
-      //   },
-      // )
-      //       .catch(e => console.log(e));
+    }, (error, charge) => {
+      if (error) {
+        console.log('error', error);
+        return error.message || new Error('Express, index.js:63')
+      } else { // charge or falsey value
+        console.log('charge', charge);
   
+        // create a new document for the donor, donation, email
+        const new_donor = new Donor({
+          first_name : req.body.firstName,
+          last_name  : req.body.lastName,
+          email      : req.body.emailAddress,
+          // statement_descriptor : 'CharityCo Donation'
+        });
+        
+        new_donor.save((error, donorDocument) => {
+          if (error) {
+            console.log(error);
+            return error.message || new Error('Express, index.js:78')
+          } else {
+            const new_donation = new Donation({
+              donor_id        : donorDocument._id,
+              donation_amount : req.body.donationAmount,
+            });
+      
+            new_donation.save((error, donationDocument) => {
+              if (error) {
+                console.log(error);
+                return error.message || new Error('Express, index.js:87')
+              } else {
+                console.log(donationDocument);
+              }
+            });
+      
+            const new_email = new Email({
+              donorId    : donorDocument._id,
+              isReferred : false,
+              firstName  : req.body.firstName,
+              email       : req.body.emailAddress,
+            });
+            new_email.save(error => {
+              if (error) {
+                console.log("error");
+                return error.message || new Error('Express, index.js:101')
+              }
+            });
   
-  
-      // res.render('donate3');
-    }  else if (req.body.step === '3' || req.body.step === 'referrals') {
+            // prime react for the next step
+            res.json({
+              checkoutStep : 'referrals',
+              donorId : donorDocument._id
+            })
+          }
+        })
+      }
+    });
+    
+    
+  } else if (req.body.step === '3' || req.body.checkoutStep === 'referrals') {
       console.log("received a post request to step 3. req.body: ", req.body);
-      // create an instance of the email model
-      // load it with
+    
+      // create an array with truthy email objects
+      let rawNameAndEmailArray = [
+        { firstName : req.body.referral1FirstName, email : req.body.referral1EmailAddress },
+        { firstName : req.body.referral2FirstName, email : req.body.referral2EmailAddress },
+      ];
+      let truthyEmailFilteredArray = [];
+      for (let i = 0; i < rawNameAndEmailArray.length; i ++) {
+        if (!!rawNameAndEmailArray[i].email) {
+          truthyEmailFilteredArray.push(rawNameAndEmailArray[i])
+        }
+      } // now only the pairs with an email are in the new array
 
-      // res.clearCookie();
-      // res.json({ message : "here's a response back"});
+    
+      // new loop to create a model instance and push into the db
+      for (let i = 0; i < truthyEmailFilteredArray.length; i ++) {
+  
+        // create an instance of the email model
+        const referredContact = new Email({
+          donorId : req.body.donorId,
+          isReferred : true,
+          firstName : truthyEmailFilteredArray[i].firstName,
+          email : truthyEmailFilteredArray[i].email
+        });
+        referredContact.save((error, emailDocument) => {
+          if (error) {
+            console.log('error', error);
+            return error.message || new Error('Express, index.js:146')
+          } else {
+            console.log(`document for index ${i}`, emailDocument);
+          }
+        })
+      }
+      
+      res.json({
+        checkoutStep : 'articlesList'
+      })
   }
 });
 
